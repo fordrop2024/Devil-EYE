@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-void: #02040a;
+    --bg-surface: #070d1a;
+    --bg-surface-elevated: #0b1528;
+    --border-hud: rgba(6, 182, 212, 0.25);
+    --border-glow: rgba(0, 240, 255, 0.4);
+    --cyan-neon: #00f0ff;
+    --cyan-dim: #0284c7;
+    --terminal-green: #10b981;
+    --alert-red: #ef4444;
+    --hud-purple: #8b5cf6;
+  }
+
+  body {
+    background-color: #02040a;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .font-tech {
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.03em;
+  }
+
+  .font-terminal {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Futuristic HUD styling */
+.hud-panel {
+  background: linear-gradient(135deg, rgba(8, 15, 30, 0.85) 0%, rgba(4, 8, 18, 0.95) 100%);
+  border: 1px solid rgba(6, 182, 212, 0.22);
+  backdrop-filter: blur(12px);
+  position: relative;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(0, 240, 255, 0.03);
+}
+
+.hud-panel-accent {
+  background: linear-gradient(135deg, rgba(12, 24, 48, 0.85) 0%, rgba(6, 12, 26, 0.95) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.08), inset 0 0 20px rgba(0, 240, 255, 0.05);
+}
+
+.hud-corners::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid #00f0ff;
+  border-left: 2px solid #00f0ff;
+  pointer-events: none;
+}
+
+.hud-corners::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid #00f0ff;
+  border-right: 2px solid #00f0ff;
+  pointer-events: none;
+}
+
+.hud-corners-all {
+  position: relative;
+}
+.hud-corners-all::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #00f0ff;
+  border-left: 2px solid #00f0ff;
+  pointer-events: none;
+  z-index: 10;
+}
+.hud-corners-all::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #00f0ff;
+  border-right: 2px solid #00f0ff;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Subtle grid overlay */
+.bg-hud-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.08) 0%, rgba(3, 7, 18, 0) 70%);
+}
+
+/* Scanline effect (subtle) */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(2, 6, 18, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.6);
+}
+
+/* Animations */
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-cyan {
+  animation: pulse-cyan 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scan-sweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scan-sweep {
+  animation: scan-sweep 4s linear infinite;
+}
